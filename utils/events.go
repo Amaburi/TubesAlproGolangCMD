@@ -102,3 +102,29 @@ func UpdateEvents(ev *Events, n int) {
 		fmt.Print("The id you inputted is not in the array\n")
 	}
 }
+
+func SearchEvent(ev Events, n int) bool {
+	var num int
+	var continueSearching string
+	fmt.Println("input the id of the event")
+	fmt.Scan(&num)
+	for i := 0; i < n; i++ {
+		if ev[i].EventId == num {
+			fmt.Println("Id:", ev[i].EventId)
+			fmt.Println("Event Name:", ev[i].Name)
+			fmt.Println("Event Date:", ev[i].Date)
+			fmt.Println("Event Time:", ev[i].Time)
+			fmt.Println("Event Location:", ev[i].Location)
+			fmt.Println("Event Description:", ev[i].Description)
+		} else {
+			fmt.Print("The event you search is not in the array")
+		}
+		fmt.Println("Do you want to continue Searching events? (yes/no)")
+		fmt.Scan(&continueSearching)
+
+		if continueSearching != "yes" {
+			return false
+		}
+	}
+	return true
+}

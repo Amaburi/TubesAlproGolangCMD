@@ -23,6 +23,8 @@ func Run() {
 				eventt.ShowEvents(event, n)
 			} else if opsi == 3 {
 				eventt.UpdateEvents(&event, n)
+			} else if opsi == 4 {
+				eventt.SearchEvent(event, n)
 			}
 			fmt.Println()
 			fmt.Println("Hello,", user.Username)
@@ -41,7 +43,7 @@ func Menu() int {
 	fmt.Println("1) Add Event")
 	fmt.Println("2) Show All Event")
 	fmt.Println("3) Update Event")
-	fmt.Println("4) Add Event")
+	fmt.Println("4) Search Event")
 	fmt.Println("5) Add Event")
 	fmt.Println("6) Exit")
 	fmt.Println()
