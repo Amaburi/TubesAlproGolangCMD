@@ -16,7 +16,7 @@ func Run() {
 		for {
 			fmt.Println("Hello,", user.Username)
 			opsi = Menu()
-			if opsi == 0 {
+			if opsi == 6 {
 				break
 			} else if opsi == 1 {
 				eventt.AddEvents(&event, &n)
@@ -42,6 +42,7 @@ func Menu() int {
 	fmt.Println("3) Update Event")
 	fmt.Println("4) Add Event")
 	fmt.Println("5) Add Event")
+	fmt.Println("6) Exit")
 	fmt.Println()
 	fmt.Println("Enter Option")
 

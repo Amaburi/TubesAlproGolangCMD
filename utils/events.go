@@ -19,7 +19,7 @@ func AddEvents(isEvents *Events, n *int) bool {
 	var continueAdding string
 	for {
 		if *n > maxx {
-			break
+			return false
 		}
 
 		fmt.Print("Enter Event Name:")
