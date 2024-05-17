@@ -13,12 +13,10 @@ func Run() {
 	register := eventt.Register(&user)
 
 	if register {
-		for {
+		opsi = Menu()
+		for opsi != 6 {
 			fmt.Println("Hello,", user.Username)
-			opsi = Menu()
-			if opsi == 6 {
-				break
-			} else if opsi == 1 {
+			if opsi == 1 {
 				eventt.AddEvents(&event, &n)
 
 			} else if opsi == 2 {
@@ -26,6 +24,7 @@ func Run() {
 			} else if opsi == 3 {
 				eventt.UpdateEvents(&event, n)
 			}
+			opsi = Menu()
 		}
 	} else {
 		fmt.Print("user needs to be registered")
