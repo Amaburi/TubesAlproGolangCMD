@@ -20,6 +20,7 @@ func Register(userr *Users) bool {
 		fmt.Print("Renter password: ")
 		fmt.Scan(&pass)
 		if userr.Password == pass {
+			fmt.Println()
 			fmt.Println("Registration successful!")
 			return true
 		} else {

@@ -19,6 +19,7 @@ func AddEvents(isEvents *Events, n *int) bool {
 	var continueAdding string
 	for {
 		if *n > maxx {
+			*n = maxx
 			return false
 		}
 
