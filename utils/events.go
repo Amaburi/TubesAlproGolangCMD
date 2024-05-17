@@ -48,7 +48,6 @@ func AddEvents(isEvents *Events, n *int) bool {
 		}
 
 	}
-	return true
 }
 
 func ShowEvents(e Events, n int) bool {
