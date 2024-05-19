@@ -6,7 +6,7 @@ import (
 )
 
 type details struct {
-	EventId                                 int
+	EventId, Price                          int
 	Name, Date, Location, Description, Time string
 }
 
@@ -38,6 +38,9 @@ func AddEvents(isEvents *Events, n *int) bool {
 		fmt.Print("Enter Event Description:")
 		fmt.Scan(&isEvents[*n].Description)
 
+		fmt.Print("Enter Price:")
+		fmt.Scan(&isEvents[*n].Price)
+
 		isEvents[*n].EventId = rand.Intn(190)
 
 		*n++
@@ -60,6 +63,7 @@ func ShowEvents(e Events, n int) bool {
 		fmt.Println("Event Time:", e[i].Time)
 		fmt.Println("Event Location:", e[i].Location)
 		fmt.Println("Event Description:", e[i].Description)
+		fmt.Println("Event Price:", e[i].Price)
 		fmt.Println()
 
 	}
@@ -71,13 +75,17 @@ func ShowEvents(e Events, n int) bool {
 
 func UpdateEvents(ev *Events, n int) {
 	var option, options string
-	var num int
+	var num, value int
 	var found bool
 
 	fmt.Println("Which attributes would you like to change?")
 	fmt.Scan(&option)
-	fmt.Println("input the desired value")
-	fmt.Scan(&options)
+
+	if option != "Price" {
+		fmt.Println("input the desired value")
+		fmt.Scan(&options)
+	}
+
 	fmt.Println("input the id of the event")
 	fmt.Scan(&num)
 
@@ -93,6 +101,10 @@ func UpdateEvents(ev *Events, n int) {
 			ev[i].Location = options
 		} else if option == "Description" && ev[i].EventId == num {
 			ev[i].Description = options
+		} else if option == "Price" && ev[i].EventId == num {
+			fmt.Println("input the desired value")
+			fmt.Scan(&value)
+			ev[i].Price = value
 		}
 		found = ev[i].EventId == num
 	}
@@ -148,6 +160,7 @@ func SearchEvent(ev Events, n int) bool {
 			fmt.Println("Event Time:", ev[mid].Time)
 			fmt.Println("Event Location:", ev[mid].Location)
 			fmt.Println("Event Description:", ev[mid].Description)
+			fmt.Println("Event Description:", ev[mid].Price)
 			idx = mid
 
 		} else if ev[mid].EventId < num {
