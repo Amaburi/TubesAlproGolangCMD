@@ -135,9 +135,9 @@ func DeleteEvent(ev *Events, n *int) {
 			right = mid - 1
 		}
 		if notFound {
-			fmt.Println("The id you're looking for is not in the array")
+			fmt.Print("The id you're looking for is not in the array\n")
 		} else {
-			fmt.Println("Data has been deleted")
+			fmt.Print("Data has been deleted\n")
 		}
 
 	}
