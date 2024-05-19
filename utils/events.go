@@ -102,6 +102,7 @@ func UpdateEvents(ev *Events, n int) {
 		fmt.Print("The id you inputted is not in the array\n")
 	}
 }
+
 func DeleteEvent(ev *Events, n *int) {
 	var num, left, right, mid, idx int
 	var notFound bool
@@ -129,6 +130,7 @@ func DeleteEvent(ev *Events, n *int) {
 
 	}
 }
+
 func SearchEvent(ev Events, n int) bool {
 	var num, left, right, mid, idx int
 	var continueSearching string
