@@ -44,7 +44,7 @@ func AddEvents(isEvents *Events, n *int) bool {
 		fmt.Println("Do you want to continue adding events? (yes/no)")
 		fmt.Scan(&continueAdding)
 
-		if continueAdding != "yes" {
+		if continueAdding == "no" {
 			return false
 		}
 
@@ -104,27 +104,40 @@ func UpdateEvents(ev *Events, n int) {
 }
 
 func SearchEvent(ev Events, n int) bool {
-	var num int
+	var num, left, right, mid, idx int
 	var continueSearching string
 	fmt.Println("input the id of the event")
 	fmt.Scan(&num)
-	for i := 0; i < n; i++ {
-		if ev[i].EventId == num {
-			fmt.Println("Id:", ev[i].EventId)
-			fmt.Println("Event Name:", ev[i].Name)
-			fmt.Println("Event Date:", ev[i].Date)
-			fmt.Println("Event Time:", ev[i].Time)
-			fmt.Println("Event Location:", ev[i].Location)
-			fmt.Println("Event Description:", ev[i].Description)
+	left = 0
+	right = n - 1
+	idx = -1
+	for left <= right && idx == -1 {
+		mid = (left + right) / 2
+		if ev[mid].EventId == num {
+			fmt.Println("Id:", ev[mid].EventId)
+			fmt.Println("Event Name:", ev[mid].Name)
+			fmt.Println("Event Date:", ev[mid].Date)
+			fmt.Println("Event Time:", ev[mid].Time)
+			fmt.Println("Event Location:", ev[mid].Location)
+			fmt.Println("Event Description:", ev[mid].Description)
+			idx = mid
+
+		} else if ev[mid].EventId < num {
+			left = mid + 1
 		} else {
-			fmt.Print("The event you search is not in the array")
+			right = mid - 1
+		}
+		if ev[mid].EventId != num {
+			fmt.Println("The id you're looking for is not in the array")
 		}
 		fmt.Println("Do you want to continue Searching events? (yes/no)")
 		fmt.Scan(&continueSearching)
 
-		if continueSearching != "yes" {
+		if continueSearching == "no" {
 			return false
 		}
+
 	}
+
 	return true
 }
