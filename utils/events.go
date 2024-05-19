@@ -104,7 +104,7 @@ func UpdateEvents(ev *Events, n int) {
 }
 func DeleteEvent(ev *Events, n *int) {
 	var num, left, right, mid, idx int
-
+	var notFound bool
 	fmt.Println("input the id of the event")
 	fmt.Scan(&num)
 	left = 0
@@ -115,14 +115,16 @@ func DeleteEvent(ev *Events, n *int) {
 		if ev[mid].EventId == num {
 			ev[mid] = ev[mid+1]
 			*n = mid + 1
-			fmt.Print("Data has been deleted")
+			notFound = false
 		} else if ev[mid].EventId < num {
 			left = mid + 1
 		} else {
 			right = mid - 1
 		}
-		if ev[mid].EventId != num {
+		if notFound {
 			fmt.Println("The id you're looking for is not in the array")
+		} else {
+			fmt.Println("Data has been deleted")
 		}
 
 	}
