@@ -15,7 +15,7 @@ func Run() {
 	if register {
 		fmt.Println("Hello,", user.Username)
 		opsi = Menu()
-		for opsi != 6 {
+		for opsi != 8 {
 			if opsi == 1 {
 				eventt.AddEvents(&event, &n)
 
@@ -25,6 +25,8 @@ func Run() {
 				eventt.UpdateEvents(&event, n)
 			} else if opsi == 4 {
 				eventt.SearchEvent(event, n)
+			} else if opsi == 5 {
+				eventt.DeleteEvent(&event, &n)
 			}
 			fmt.Println()
 			fmt.Println("Hello,", user.Username)
@@ -44,8 +46,9 @@ func Menu() int {
 	fmt.Println("2) Show All Event")
 	fmt.Println("3) Update Event")
 	fmt.Println("4) Search Event")
-	fmt.Println("5) Add Event")
-	fmt.Println("6) Exit")
+	fmt.Println("5) Delete Eventt")
+	fmt.Println("6) lorem ipsum dolor sit amet, consectetur adipiscing elit")
+	fmt.Println("8) Exit")
 	fmt.Println()
 	fmt.Println("Enter Option")
 
