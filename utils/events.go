@@ -14,13 +14,13 @@ const maxx = 20
 
 type Events [maxx]details
 
-func AddEvents(isEvents *Events, n *int) bool {
+func AddEvents(isEvents *Events, n *int) {
 
 	var continueAdding string
-	for {
+	for continueAdding != "no" {
 		if *n > maxx {
 			*n = maxx
-			return false
+
 		}
 
 		fmt.Print("Enter Event Name:")
@@ -46,10 +46,6 @@ func AddEvents(isEvents *Events, n *int) bool {
 		*n++
 		fmt.Println("Do you want to continue adding events? (yes/no)")
 		fmt.Scan(&continueAdding)
-
-		if continueAdding == "no" {
-			return false
-		}
 
 	}
 }
@@ -182,3 +178,11 @@ func SearchEvent(ev Events, n int) bool {
 
 	return true
 }
+
+func EventSortingAsc(ev *Events, n int) {
+	//var max int
+	//max = 1
+
+}
+
+func EventSortingDesc(ev *Events, n int) {}

@@ -9,7 +9,7 @@ func Run() {
 	var user eventt.Users
 	var event eventt.Events
 	var opsi, n int
-
+	var option string
 	register := eventt.Register(&user)
 
 	if register {
@@ -27,6 +27,15 @@ func Run() {
 				eventt.SearchEvent(event, n)
 			} else if opsi == 5 {
 				eventt.DeleteEvent(&event, &n)
+			} else if opsi == 6 {
+				fmt.Print("Ascending / Descending ?")
+				fmt.Scan(&option)
+
+				if option == "Ascending" {
+					eventt.EventSortingAsc(&event, n)
+				} else if option == "Descending" {
+					eventt.EventSortingDesc(&event, n)
+				}
 			}
 			fmt.Println()
 			fmt.Println("Hello,", user.Username)
@@ -46,8 +55,8 @@ func Menu() int {
 	fmt.Println("2) Show All Event")
 	fmt.Println("3) Update Event")
 	fmt.Println("4) Search Event")
-	fmt.Println("5) Delete Eventt")
-	fmt.Println("6) lorem ipsum dolor sit amet, consectetur adipiscing elit")
+	fmt.Println("5) Delete Event")
+	fmt.Println("6) Sorting Event")
 	fmt.Println("8) Exit")
 	fmt.Println()
 	fmt.Println("Enter Option")
