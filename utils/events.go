@@ -182,7 +182,28 @@ func SearchEvent(ev Events, n int) bool {
 func EventSortingAsc(ev *Events, n int) {
 	//var max int
 	//max = 1
+	for i := 0; i < n-1; i++ {
+		idx := i
+		for j := i + 1; j < n; j++ {
+			if ev[j].Price < ev[idx].Price {
+				ev[j], ev[idx] = ev[idx], ev[j]
+			}
+		}
+	}
 
 }
 
-func EventSortingDesc(ev *Events, n int) {}
+func EventSortingDesc(ev *Events, n int) {
+	pass := n - 1
+	i := 1
+	for i <= pass {
+		tempp := ev[i]
+		j := i - 1
+		for j >= 0 && ev[j].Price < tempp.Price {
+			ev[j+1] = ev[j]
+			j--
+		}
+		ev[j+1] = tempp
+		i++
+	}
+}
