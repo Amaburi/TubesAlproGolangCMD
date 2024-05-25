@@ -86,23 +86,28 @@ func UpdateEvents(ev *Events, n int) {
 	fmt.Scan(&num)
 
 	for i := 0; i < n; i++ {
-		if option == "Name" && ev[i].EventId == num {
-			ev[i].Name = options
-
-		} else if option == "Date" && ev[i].EventId == num {
-			ev[i].Date = options
-		} else if option == "Time" && ev[i].EventId == num {
-			ev[i].Time = options
-		} else if option == "Location" && ev[i].EventId == num {
-			ev[i].Location = options
-		} else if option == "Description" && ev[i].EventId == num {
-			ev[i].Description = options
-		} else if option == "Price" && ev[i].EventId == num {
-			fmt.Println("input the desired value")
-			fmt.Scan(&value)
-			ev[i].Price = value
+		if ev[i].EventId == num {
+			switch option {
+			case "Name":
+				ev[i].Name = options
+			case "Date":
+				ev[i].Date = options
+			case "Time":
+				ev[i].Time = options
+			case "Location":
+				ev[i].Location = options
+			case "Description":
+				ev[i].Description = options
+			case "Price":
+				fmt.Println("Input the new price:")
+				fmt.Scan(&value)
+				ev[i].Price = value
+			default:
+				fmt.Println("Invalid attribute")
+				return
+			}
+			found = true
 		}
-		found = ev[i].EventId == num
 	}
 	if found {
 		fmt.Print("Event has been updated successfully\n")
@@ -112,36 +117,33 @@ func UpdateEvents(ev *Events, n int) {
 }
 
 func DeleteEvent(ev *Events, n *int) {
-	var num, left, right, mid, idx int
+	var num int
 	var notFound bool
+
 	fmt.Println("input the id of the event")
 	fmt.Scan(&num)
-	left = 0
-	right = *n - 1
-	idx = -1
-	for left <= right && idx == -1 {
-		mid = (left + right) / 2
-		if ev[mid].EventId == num {
-			ev[mid] = ev[mid+1]
-			*n = mid + 1
+
+	for i := 0; i < *n; i++ {
+
+		if ev[i].EventId == num {
+			ev[i] = ev[i+1]
+			*n--
 			notFound = false
-		} else if ev[mid].EventId < num {
-			left = mid + 1
-		} else {
-			right = mid - 1
-		}
-		if notFound {
-			fmt.Print("The id you're looking for is not in the array\n")
-		} else {
-			fmt.Print("Data has been deleted\n")
 		}
 
+	}
+	if notFound {
+		fmt.Print("The id you're looking for is not in the array\n")
+	} else {
+		fmt.Print("Data has been deleted\n")
 	}
 }
 
 func SearchEvent(ev Events, n int) bool {
 	var num, left, right, mid, idx int
-	var continueSearching string
+	var found bool
+	var continuee string
+	EventIDSortingAsc(&ev, n)
 	fmt.Println("input the id of the event")
 	fmt.Scan(&num)
 	left = 0
@@ -158,24 +160,19 @@ func SearchEvent(ev Events, n int) bool {
 			fmt.Println("Event Description:", ev[mid].Description)
 			fmt.Println("Event Description:", ev[mid].Price)
 			idx = mid
-
+			found = true
 		} else if ev[mid].EventId < num {
 			left = mid + 1
 		} else {
 			right = mid - 1
 		}
-		if ev[mid].EventId != num {
-			fmt.Println("The id you're looking for is not in the array")
-		}
-		fmt.Println("Do you want to continue Searching events? (yes/no)")
-		fmt.Scan(&continueSearching)
-
-		if continueSearching == "no" {
-			return false
-		}
 
 	}
-
+	if !found {
+		fmt.Println("The id you're looking for is not in the array")
+	}
+	fmt.Println("Do you want to back? (yes/no)")
+	fmt.Scan(&continuee)
 	return true
 }
 
@@ -192,7 +189,17 @@ func EventSortingAsc(ev *Events, n int) {
 	}
 
 }
+func EventIDSortingAsc(ev *Events, n int) {
+	for i := 0; i < n-1; i++ {
+		idx := i
+		for j := i + 1; j < n; j++ {
+			if ev[j].EventId < ev[idx].EventId {
+				ev[j], ev[idx] = ev[idx], ev[j]
+			}
+		}
+	}
 
+}
 func EventSortingDesc(ev *Events, n int) {
 	pass := n - 1
 	i := 1
